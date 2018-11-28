@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+repositories{
+    flatDir {
+        dirs 'libs'
+    }
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:28.0.0-alpha1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    //导入retrofit
+    implementation 'com.google.code.gson:gson:2.6.2'
+    //Gson 库
+    //下面两个是RxJava 和 RxAndroid
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.x.y'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //转换器，请求结果转换成Model
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.12.0'
+
+    implementation group: 'com.alibaba', name: 'arouter-api', version: '1.4.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
+    // https://mvnrepository.com/artifact/org.eclipse.paho/mqtt-client
+    implementation group: 'org.eclipse.paho', name: 'mqtt-client', version: '0.4.0'
+// https://mvnrepository.com/artifact/dom4j/dom4j
+    implementation group: 'dom4j', name: 'dom4j', version: '1.6.1'
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
+    implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.12.0'
+// https://mvnrepository.com/artifact/com.github.ybq/Android-SpinKit
+    implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+//    implementation(name: 'Android-SpinKit-1.1.0', ext:'aar')
+
+
+}
